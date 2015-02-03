@@ -25,7 +25,7 @@ class Fredh2
 		n = N;
 
 		gauleg(a,b,t,w);
-
+		
 		for(int i=0; i<N ; i++)
 		{
 			for (int j=0; j<N; j++)
@@ -37,8 +37,11 @@ class Fredh2
 
 				mat[i][j] -= lambda * w[j]*(t[i] -t[j]);
 			}
+			
+			fvec[i] = 0;
+			gvec[i] = sin(t[i]);
 		}
-
+		
 		LUdcmp alu(mat);
 		alu.solve(gvec,fvec);
 	}
@@ -58,7 +61,7 @@ class Fredh2
 };
 
 // Analytisches Ergebnis zum Vergleich
-const double l = 1; // lambda
+const double l = 10; // lambda
 const double g1=2, g2=M_PI, d1= M_PI, d2=M_PI*M_PI, d3=M_PI*M_PI*M_PI;
 const double A1 = (12*g1+6*l*(g1*d2-2*g2*d1))/(l*l*d1*d1*d1*d1+12);
 const double A2 = (-12*g2+2*l*(3*g2*d2-2*g1*d3))/(l*l*d1*d1*d1*d1+12);
