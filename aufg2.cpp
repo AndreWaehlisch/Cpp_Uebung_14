@@ -13,14 +13,13 @@ public:
   diff(double m, double S)
   {
     m0 = m;
-    s = S; 
+    s = S;
   }
 
   double a( double x)
   {
-    return (1- m0*m0) *pow(abs(m0),s); 
+    return (1- m0*m0) *pow(abs(m0),s);
   }
-
 
   double b(double x)
   {
@@ -36,20 +35,21 @@ public:
   }
 };
 
-  
+
 int main()
 {
-  diff d(0.7,2./3.);
-  VecDoub sol; 
+  diff d(0.7, 0.);
+  VecDoub sol;
 
   ofstream datei("aufg2.txt",ios::trunc);
-  
+
   Fem1D<diff> fem(d,200,100,1e-2);
 
   sol = fem.run();
 
-  for(int i; i<sol.size(); i++)
+  for(int i=0; i<sol.size(); i++)
     datei << sol[i] << endl;
+   // Die Bedingung für die Norm (=1) ist für alle Zeiten erfüllt (sowohl für s=0, als auch s=2./3.)
 
-  datei.close(); 
+  datei.close();
 }

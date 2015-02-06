@@ -25,7 +25,7 @@ class Fredh2
 		n = N;
 
 		gauleg(a,b,t,w);
-		
+
 		for(int i=0; i<N ; i++)
 		{
 			for (int j=0; j<N; j++)
@@ -37,11 +37,11 @@ class Fredh2
 
 				mat[i][j] -= lambda * w[j]*(t[i] -t[j]);
 			}
-			
+
 			fvec[i] = 0;
 			gvec[i] = sin(t[i]);
 		}
-		
+
 		LUdcmp alu(mat);
 		alu.solve(gvec,fvec);
 	}
@@ -78,9 +78,11 @@ int main()
   ofstream file("aufg3.txt",ios::trunc);
 
   for (double t = 0; t <= M_PI; t+= 1e-3)
-    file << t << ' ' << f(t) << ' ' << analytisch(t)  << endl;
+    file << t << ' ' << f(t) << ' ' << analytisch(t) << endl;
 
   file.close();
 
   cout << "Output written to aufg3.txt" << endl;
+
+  // Die (absolute) Abweichung zwischen numerischer und analytischer Lösung liegt im Bereich von 1e-14, dies ist zufriedenstellend.
 }
